@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+User -> (Login)
+User -> (Create new login)
+note left of (Create new login)
+Login skal gemmes i fil,
+så det kan indlæses ved
+programstart
+end note
+
+(Login) --> (Search movie)
+(Create new login) --> (Search movie)
+
+(Login) --> (Search category)
+(Create new login) --> (Search category)
+
+(Login) --> (Viewing history)
+(Create new login) --> (Viewing history)
+
+(Login) --> (My List)
+(Create new login) --> (My List)
+
+(Search movie) ---> (Watch now)
+note left of (Watch now)
+Tilføj film til historik
+end note
+(Search movie) ---> (Add to My List)
+(Search movie) ---> (Remove from My List)
+
+(Search category) --> (Select movie)
+
+(Viewing history) --> (Select movie)
+
+(My List) --> (Select movie)
+
+(Select movie) ----> (Watch now)
+(Select movie) ----> (Add to My List)
+(Select movie) ----> (Remove from My List)
+
+
+@enduml
