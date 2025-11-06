@@ -1,27 +1,82 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+class Main
+class StartMenu {
+    + startSession()
+    + login()
+    + registerUser()
+    + displayUsers()
+}
+class MainMenu {
+    + displayMenu()
+    + searchMovie()
+    + searchShow()
+    + searchCategory()
+    + searchMoviesToWatch()
+    + searchShowsToWatch()
+    + play()
+    + endSession()
+}
+class User {
+    - String name
+    - int age
+    - moviesToWatch<String>
+    - showsToWatch<String>
+    - movieHistory<String>
+    - showHistory<String>
+    + user(name, age)
+    }
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class List {
+    - allMovieCategories
+    - allShowsCategories
+    - movieList<Movies>
+    - showList<Shows>
+    + scanForCategory()
+    + createMovieList()
+    + createShowList()
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Movie {
+    - String name
+    - int year
+    - category<String>
+    - double rating
+    + Movie (name, year, category, rating)
+    + addMovieToUserList()
 }
+class Show {
+    - String name
+    - int year
+    - category<String>
+    - double rating
+    - int seasons
+    - int episodes
+    + Show (name, year, category, rating
+    ,  seasons, episodes)
+    + addShowToUserList()
+}
+class TextUI {
+    + displayMessage()
+    + promptBinary()
+}
+class FileIO {
+    + readMovieCsv()
+    + readShowsCsv()
+    + addMovie()
+    + addShow()
+    + saveUserData()
+    + readUserData()
+}
+
+Main -> StartMenu
+StartMenu -> User
+StartMenu -> MainMenu
+MainMenu -> List
+List -> Show
+List -> Movie
+
+
 
 @enduml
