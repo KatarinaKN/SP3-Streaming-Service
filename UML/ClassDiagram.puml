@@ -21,14 +21,16 @@ class MainMenu {
 class User {
     - String name
     - int age
-    - moviesToWatch<String>
-    - showsToWatch<String>
-    - movieHistory<String>
-    - showHistory<String>
+    - moviesToWatch<Movie>
+    - showsToWatch<Show>
+    - movieHistory<Movie>
+    - showHistory<Show>
     + user(name, age)
-    }
+    + addShowToUserList()
+    + addMovieToUserList()
+}
 
-class List {
+class Content {
     - allMovieCategories
     - allShowsCategories
     - movieList<Movies>
@@ -38,13 +40,20 @@ class List {
     + createShowList()
 }
 
+abstract class Media {
+    - String name
+    - int year
+    - category<String>
+    - double rating
+
+}
+
 class Movie {
     - String name
     - int year
     - category<String>
     - double rating
     + Movie (name, year, category, rating)
-    + addMovieToUserList()
 }
 class Show {
     - String name
@@ -55,7 +64,6 @@ class Show {
     - int episodes
     + Show (name, year, category, rating
     ,  seasons, episodes)
-    + addShowToUserList()
 }
 class TextUI {
     + displayMessage()
@@ -70,12 +78,13 @@ class FileIO {
     + readUserData()
 }
 
-Main -> StartMenu
-StartMenu -> User
-StartMenu -> MainMenu
-MainMenu -> List
-List -> Show
-List -> Movie
+Main *-- StartMenu
+StartMenu *-- User
+StartMenu *-- MainMenu
+MainMenu *--- Content
+Content *--- Media
+Media <|--- Movie
+Media <|--- Show
 
 
 
