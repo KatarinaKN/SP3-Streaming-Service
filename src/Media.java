@@ -2,9 +2,16 @@ import java.util.ArrayList;
 
 public abstract class Media {
     private String name;
-    private int age;
+    private int year;
     private ArrayList<String> category;
     private double rating;
+
+public Media (String name, int year, ArrayList<String> category, double rating){
+    this.name = name;
+    this.year = year;
+    this.category = category;
+    this.rating = rating;
+}
 
     public String getName() {
         return name;
@@ -14,12 +21,12 @@ public abstract class Media {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getYear() {
+        return year;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public ArrayList<String> getCategory() {
