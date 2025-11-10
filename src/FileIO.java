@@ -48,10 +48,10 @@ public class FileIO {
         }
     }
 
-    public void saveUserData(ArrayList<String> list, String pathUser) { //HER: indsæt header hvis det er i user.csv
+    public void saveUserData(ArrayList<User> list, String pathUser) { //HER: indsæt header hvis det er i user.csv
         try (FileWriter writer = new FileWriter(pathUser, true)) {
-            for (String s : list) {
-                writer.write(s + "\n");
+            for (User u : list) {
+                writer.write(u + "\n");
             }
         } catch (IOException e) {
             System.out.println("Fejl: Brugerdata kunne ikke gemmes til: " + pathUser +  "("+e.getMessage()+")");

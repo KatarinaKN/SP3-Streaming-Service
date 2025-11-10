@@ -16,7 +16,19 @@ public class StartMenu {
         this.ui.displayMessage("Welcome to Børge's Streaming Service");
         ArrayList<String> user = this.io.readUser("data/user.csv");
 
-        if (!user.isEmpty() && ui.promptYesOrNo("Do you have a login? (Y/N)")){
+        if (!user.isEmpty() && this.ui.promptYesOrNo("Do you have a login? (Y/N)")){
+            String inputName = this.ui.promptText("Enter your name: ");
+            if (user.contains(inputName)){
+                String inputPassword = this.ui.promptText("Enter your password: ");
+                //Hvordan tjekker vi, om det er et rigtige password? som også passer til den bruger,
+                //der prøver at logge ind...
+                //Hvad skal der ske, hvis password er forkert?
+                //if (!inputPassword) hvis password er forkert...
+                //... bed om password igen. (måske kun tre gange).
+            }
+            else {
+                registerUser();
+            }
             //Vælg en bruger fra en liste.
             //noget med at indtaste password og at programmet tjekker, om det stemmer overens... equals...
         }
@@ -25,7 +37,6 @@ public class StartMenu {
         }
     }
 
-
     public void registerUser(){
         String userName = this.ui.promptText("Please enter your name: ");
         int userAge = this.ui.promptNumeric("Please enter your age: ");
@@ -33,6 +44,8 @@ public class StartMenu {
 
         User u = new User(userName, userAge, userPassword);
         this.users.add(u);
+
+        this.io.saveUserData(users, "data/user.csv");
     }
 
     public void displayUser(){
@@ -42,9 +55,8 @@ public class StartMenu {
     }
 
     public void endSession(){
+        this.ui.displayMessage("Ending Børge's Streaming Service.");
 
     }
 
-    //startSession() + login()
-    //endSession()
 }
