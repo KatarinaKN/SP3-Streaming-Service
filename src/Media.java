@@ -44,4 +44,9 @@ public Media (String name, int year, ArrayList<String> category, double rating){
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public String toString(){
+        return name + ", " + year + ", " +  category + ", " + rating;
+    }
+
 }
