@@ -16,7 +16,7 @@ public class FileIO {
     }
 
     //------Movies og shows bruger samme metode til at læse fra fil:------
-    private ArrayList<String> readMediaFile(String path) {
+    public ArrayList<String> readMediaFile(String path) {
         ArrayList<String> media = new ArrayList<>();
         File file = new File(path);
         try (Scanner scanner = new Scanner(file)) {
@@ -38,7 +38,7 @@ public class FileIO {
     }
 
     //------Movies og shows bruger samme metode til at tilføje til fil:------
-    private void addMediaToFile(ArrayList<String> list, String path) {
+    public void addMediaToFile(ArrayList<String> list, String path) {
         try (FileWriter writer = new FileWriter(path, true)) { //append: true tilføjer isf at overskrive
             for (String s : list) {
                 writer.write(s + "\n");
