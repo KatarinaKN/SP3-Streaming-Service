@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public abstract class Media {
     private String name;
     private int year;
-    private ArrayList<String> category;
+    private String[] category;
     private double rating;
 
-public Media (String name, int year, ArrayList<String> category, double rating){
+public Media (String name, int year, String[] category, double rating){
     this.name = name;
     this.year = year;
     this.category = category;
@@ -29,11 +29,11 @@ public Media (String name, int year, ArrayList<String> category, double rating){
         this.year = year;
     }
 
-    public ArrayList<String> getCategory() {
+    public String[] getCategory() {
         return category;
     }
 
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(String[] category) {
         this.category = category;
     }
 

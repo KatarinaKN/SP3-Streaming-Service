@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class User {
     private String name;
     private int age;
@@ -10,9 +11,10 @@ public class User {
     private ArrayList<Show> showHistory;
     TextUI ui = new TextUI();
 
-    public User(String name, int age){
+    public User(String name, int age, String password){
         this.name = name;
         this.age = age;
+        this.password = password;
         moviesToWatch = new ArrayList<>();
         showsToWatch = new ArrayList<>();
         movieHistory = new ArrayList<>();
@@ -43,6 +45,8 @@ public class User {
         }
     }
 
+    //Bør ligge i MainMenu. Kommunikation med brugeren skal ligge i forretningskoden,
+    //så den ikke er afhængig af, at man har instantieret en bruger.
     public void displayToWatch(){
         while(true) {
             String answer = ui.promptText("Display Movie or Show list? (Movie/Show): ");
@@ -103,5 +107,9 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String toString(){
+        return name +"; " + age + "; " + password;
     }
 }
