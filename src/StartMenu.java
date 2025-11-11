@@ -37,6 +37,8 @@ public class StartMenu {
         }
     }
 
+    //hvis ja til at man har login, startsession kald på login-metode
+
     public void registerUser(){
         String userName = this.ui.promptText("Please enter your name: ");
         int userAge = this.ui.promptNumeric("Please enter your age: ");

@@ -7,34 +7,49 @@ import java.util.Scanner;
 
 public class FileIO {
 
-    public ArrayList<String> readMovieCsv(String pathMovie) {
-        return readMediaFile(pathMovie);
-    }
 
-    public ArrayList<String> readShowsCsv(String pathShows) {
-        return readMediaFile(pathShows);
-    }
-
-    //------Movies og shows bruger samme metode til at læse fra fil:------
-    public ArrayList<String> readMediaFile(String path) {
-        ArrayList<String> media = new ArrayList<>();
-        File file = new File(path);
+    //------Movies og shows bruger IKKE samme metode til at læse fra fil:------
+    public ArrayList<Movie> readMovieFile() {
+        ArrayList<Movie> movies = new ArrayList<>();
+        File file = new File("data/movies.csv");
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                media.add(scanner.nextLine());
+                String line = scanner.nextLine();
+                String[] elements = line.split(";");
+                String name = elements[0].trim();
+                int year = Integer.parseInt(elements[1]);
+                String[] category = elements[2].split(",");
+                double rating = elements[3];
+                Movie m = new Movie(name,year, category, rating);
+                movies.add(m);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Filen blev ikke fundet: " + path +  "("+e.getMessage()+")");
+            System.out.println("Filen blev ikke fundet: " +  "("+e.getMessage()+")");
         }
-        return media;
+        return movies;
     }
 
-    public void addMovieCsv(ArrayList<String> list, String pathMovie) {
-        addMediaToFile(list, pathMovie);
-    }
+    public ArrayList<Show> readShowFile() {
+        ArrayList<Show> shows = new ArrayList<>();
+        File file = new File("data/shows.csv");
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] elements = line.split(";");
+                String name = elements[0].trim();
+                int year = Integer.parseInt(elements[1]);
+                String[] category = elements[2].split(",");
+                double rating = elements[3];
+                int seasons = Integer.parseInt(elements[4]);
+                int episodes = Integer.parseInt(elements[5]);
 
-    public void addShowsCsv(ArrayList<String> list, String pathShows) {
-        addMediaToFile(list, pathShows);
+                Show s = new Show(name,year, category, rating, seasons, episodes);
+                shows.add(s);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen blev ikke fundet: " +  "("+e.getMessage()+")");
+        }
+        return shows;
     }
 
     //------Movies og shows bruger samme metode til at tilføje til fil:------
@@ -51,23 +66,33 @@ public class FileIO {
     public void saveUserData(ArrayList<User> list, String pathUser) { //HER: indsæt header hvis det er i user.csv
         try (FileWriter writer = new FileWriter(pathUser, true)) {
             for (User u : list) {
-                writer.write(u + "\n");
+                writer.write(u.toString() + "\n");
             }
         } catch (IOException e) {
             System.out.println("Fejl: Brugerdata kunne ikke gemmes til: " + pathUser +  "("+e.getMessage()+")");
         }
     }
 
-    public ArrayList<String> readUser(String pathUser) {
-        ArrayList<String> user = new ArrayList<>();
-        File file = new File(pathUser);
+    public ArrayList<User> readUser() {
+        ArrayList<User> user = new ArrayList<>();
+        File file = new File("data/user.csv");
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
+
                 user.add(scanner.nextLine());
             }
         } catch (FileNotFoundException e) {
             System.out.println("Filen blev ikke fundet: " + pathUser +  "("+e.getMessage()+")");
         }
         return user;
+    }
+
+
+    public void addMovieCsv(ArrayList<String> list, String pathMovie) {
+        addMediaToFile(list, pathMovie);
+    }
+
+    public void addShowsCsv(ArrayList<String> list, String pathShows) {
+        addMediaToFile(list, pathShows);
     }
 }
