@@ -5,8 +5,6 @@ public class Content {
     private ArrayList<String> category = new ArrayList<>();
     private ArrayList<Movie> movieList = new ArrayList<>();
     private ArrayList<Show> showList = new ArrayList<>();
-    //private ArrayList<String> movieCategoryList = new ArrayList<>();
-    //private ArrayList<String> showCategoryList = new ArrayList<>();
     FileIO io = new FileIO();
 
 
