@@ -14,7 +14,7 @@ public class StartMenu {
 
     public void startSession(){
         this.ui.displayMessage("Welcome to Børge's Streaming Service");
-        ArrayList<String> user = this.io.readUser("data/user.csv");
+        ArrayList<User> user = this.io.readUser();
 
         if (!user.isEmpty() && this.ui.promptYesOrNo("Do you have a login? (Y/N)")){
             String inputName = this.ui.promptText("Enter your name: ");
