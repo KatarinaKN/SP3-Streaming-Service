@@ -30,8 +30,7 @@ public class Content {
     }
 
     public void createMovieList() {
-         movieList = io.readMovieCsv("data/movies.csv");
-        //skal vi ændre ArrayList<Movie> til ArrayList<String>? Hvis ikke, skal noget ændres i FileIO.
+         movieList = io.readMovieFile();
 
     }
 
