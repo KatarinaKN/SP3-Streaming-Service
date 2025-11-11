@@ -19,7 +19,7 @@ public class FileIO {
                 String name = elements[0].trim();
                 int year = Integer.parseInt(elements[1]);
                 String[] category = elements[2].split(",");
-                double rating = elements[3];
+                double rating = Double.parseDouble(elements[3]);
                 Movie m = new Movie(name,year, category, rating);
                 movies.add(m);
             }
@@ -39,7 +39,7 @@ public class FileIO {
                 String name = elements[0].trim();
                 int year = Integer.parseInt(elements[1]);
                 String[] category = elements[2].split(",");
-                double rating = elements[3];
+                double rating = Double.parseDouble(elements[3]);
                 int seasons = Integer.parseInt(elements[4]);
                 int episodes = Integer.parseInt(elements[5]);
 
@@ -78,11 +78,16 @@ public class FileIO {
         File file = new File("data/user.csv");
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-
-                user.add(scanner.nextLine());
+                String line = scanner.nextLine();
+                String[] elements = line.split(";");
+                String name = elements[0].trim();
+                int age = Integer.parseInt(elements[1]);
+                String password = elements[2].trim();
+                User u = new User(name, age, password);
+                user.add(u);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Filen blev ikke fundet: " + pathUser +  "("+e.getMessage()+")");
+            System.out.println("Filen blev ikke fundet: " + "data/user.csv" +  "("+e.getMessage()+")");
         }
         return user;
     }
