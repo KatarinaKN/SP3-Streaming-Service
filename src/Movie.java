@@ -5,4 +5,5 @@ public class Movie extends Media {
     public Movie (String name, int year, String[] category, double rating){
         super(name, year, category, rating);
     }
+
 }

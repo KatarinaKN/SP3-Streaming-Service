@@ -29,11 +29,11 @@ public Media (String name, int year, String[] category, double rating){
         this.year = year;
     }
 
-    public ArrayList<String> getCategory() {
+    public String[] getCategory() {
         return category;
     }
 
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(String[] category) {
         this.category = category;
     }
 
