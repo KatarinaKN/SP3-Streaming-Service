@@ -8,57 +8,69 @@ public class StartMenu {
     private ArrayList<User> users;
     private int maxUsers;
 
-    public StartMenu (){
+    public StartMenu() {
         this.users = new ArrayList<>();
     }
 
-    public void startSession(){
+    public void startSession() {
         this.ui.displayMessage("Welcome to Børge's Streaming Service");
         ArrayList<User> user = this.io.readUser();
+        if (!user.isEmpty() && this.ui.promptYesOrNo("Do you have a login? (Y/N)")) {
+            login();
 
-        if (!user.isEmpty() && this.ui.promptYesOrNo("Do you have a login? (Y/N)")){
-            String inputName = this.ui.promptText("Enter your name: ");
-            if (user.contains(inputName)){
-                String inputPassword = this.ui.promptText("Enter your password: ");
-                //Hvordan tjekker vi, om det er et rigtige password? som også passer til den bruger,
-                //der prøver at logge ind...
-                //Hvad skal der ske, hvis password er forkert?
-                //if (!inputPassword) hvis password er forkert...
-                //... bed om password igen. (måske kun tre gange).
-            }
-            else {
-                registerUser();
-            }
-            //Vælg en bruger fra en liste.
-            //noget med at indtaste password og at programmet tjekker, om det stemmer overens... equals...
-        }
-        else {
+        } else {
             registerUser();
         }
+
     }
 
-    //hvis ja til at man har login, startsession kald på login-metode
+    public void login() {
+        String inputName = this.ui.promptText("Enter your name: ");
+        ArrayList<User> user = this.io.readUser();
 
-    public void registerUser(){
-        String userName = this.ui.promptText("Please enter your name: ");
-        int userAge = this.ui.promptNumeric("Please enter your age: ");
-        String userPassword = this.ui.promptText("Please enter a password: ");
+        if (user.contains(inputName)) {
+            String inputPassword = this.ui.promptText("Hello " + inputName + ". Enter your password: ");
+            if (user.contains(inputPassword)) {
+                displayMenu();
 
-        User u = new User(userName, userAge, userPassword);
-        this.users.add(u);
+            } else {
+                for (int i = 0; i < 2; i++) {
+                    this.ui.promptText("Password not correct, please try again");
+                }
 
-        this.io.saveUserData(users, "data/user.csv");
-    }
-
-    public void displayUser(){
-        for(User u : this.users){
-            System.out.println(u);
+                this.ui.displayMessage("Access denied.");
+                this.ui.promptYesOrNo(" Would you like to create a user? (Y/N)");
+                registerUser();
+            }
         }
+
+        //Hvordan tjekker vi, om det er et rigtige password? som også passer til den bruger,
+        //der prøver at logge ind...
+
+
     }
 
-    public void endSession(){
-        this.ui.displayMessage("Ending Børge's Streaming Service.");
 
+public void registerUser() {
+    String userName = this.ui.promptText("Please enter your name: ");
+    int userAge = this.ui.promptNumeric("Please enter your age: ");
+    String userPassword = this.ui.promptText("Please enter a password: ");
+
+    User u = new User(userName, userAge, userPassword);
+    this.users.add(u);
+
+    this.io.saveUserData(users, "data/user.csv");
+}
+
+public void displayUser() {
+    for (User u : this.users) {
+        System.out.println(u);
     }
+}
+
+public void endSession() {
+    this.ui.displayMessage("Ending Børge's Streaming Service.");
+
+}
 
 }
