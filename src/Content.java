@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Content {
-    private static ArrayList<String> category;
-    private static ArrayList<Movie> movieList;
-    private static ArrayList<Show> showList;
+    private static ArrayList<String> category = new ArrayList<>();
+    private static ArrayList<Movie> movieList = new ArrayList<>();
+    private static ArrayList<Show> showList = new ArrayList<>();
     FileIO io = new FileIO();
 
     public Content (){
@@ -17,22 +17,20 @@ public class Content {
     public ArrayList<String> createCategoryList() {
         for (int i = 0; i < movieList.size(); i++) {
             String[] categories = movieList.get(i).getCategory();
-            if (!category.contains(categories[0])) {
-                category.add(categories[0]);
-            } else {
-                //skip linje
-            }
-        }
-
-        for (int j = 0; j < showList.size(); j++) {
-            String[] categories = showList.get(j).getCategory();
-                if (!category.contains(categories[0])) {
-                    category.add(categories[0]);
-                } else {
-                    //skip linje
+            for (int h = 0; h < categories.length; h++) {
+                if (!category.contains(categories[h])) {
+                    category.add(categories[h]);
                 }
             }
-
+            for (int j = 0; j < showList.size(); j++) {
+                String[] showCategories = showList.get(j).getCategory();
+                for (int g = 0; g < showCategories.length; g++) {
+                    if (!category.contains(showCategories[g])) {
+                        category.add(showCategories[g]);
+                    }
+                }
+            }
+        }
         return category;
     }
 

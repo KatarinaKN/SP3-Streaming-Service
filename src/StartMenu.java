@@ -37,19 +37,18 @@ public class StartMenu {
                 if (user.get(i).getPassword().equals(inputPassword)) {
                     menu.displayMenu(user.get(i));
                 } else {
-                    this.ui.promptText("Password not correct, please try again.");
-                    counter ++;
-                    if (counter == 3){
+                    while(counter<3) {
+                        this.ui.promptText("Password not correct, please try again.");
+                        counter++;
+                    }
+                    if (counter == 3) {
                         this.ui.displayMessage("Access denied. Register new user.");
                         registerUser();
                     }
                 }
             }
         }
-                this.ui.displayMessage("User not found. Register new user.");
-                registerUser();
-
-        }
+    }
 
 
 public void registerUser() {

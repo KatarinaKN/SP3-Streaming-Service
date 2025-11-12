@@ -8,6 +8,6 @@ public class Main {
 
         startMenu.startSession();
 
-
+        startMenu.endSession();
     }
 }

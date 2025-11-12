@@ -20,7 +20,7 @@ public class FileIO {
                 int year = Integer.parseInt(elements[1].trim());
                 String[] category = elements[2].split(",");
                 double rating = Double.parseDouble(elements[3].trim());
-                Movie m = new Movie(name,year, category, rating);
+                Movie m = new Movie(name, year, category, rating);
                 movies.add(m);
             }
         } catch (FileNotFoundException e) {
@@ -37,13 +37,12 @@ public class FileIO {
                 String line = scanner.nextLine();
                 String[] elements = line.split(";");
                 String name = elements[0].trim();
-                int year = Integer.parseInt(elements[1].trim());
+                String year = elements[1].trim();
                 String[] category = elements[2].split(",");
                 double rating = Double.parseDouble(elements[3].trim());
-                int seasons = Integer.parseInt(elements[4]);
-                int episodes = Integer.parseInt(elements[5]);
+                String seasons = elements[4].trim();
 
-                Show s = new Show(name,year, category, rating, seasons, episodes);
+                Show s = new Show(name, year, category, rating, seasons);
                 shows.add(s);
             }
         } catch (FileNotFoundException e) {

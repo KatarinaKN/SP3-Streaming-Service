@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
+
     TextUI ui = new TextUI();
     Content content = new Content();
     ArrayList<String> list = content.getCategory();
@@ -29,14 +30,17 @@ public class MainMenu {
                 break;
             default:
                 ui.displayMessage("Error with selected number.");
+                displayMenu(user);
         }
     }
 
     public void searchMovie(){
         ui.displayMessage("These Movies are available to watch:");
-        for (Movie m: movieList){
-            ui.displayMessage(m.toString());
+        for (int i=0; i<movieList.size(); i++){
+            ui.displayMessage(i+1 + ": " + movieList.get(i));
         }
+        int choice = ui.promptNumeric("Select the number of the Movie you wish to watch:");
+        play(movieList.get(choice-1));
     }
 
     public void searchShow(){
