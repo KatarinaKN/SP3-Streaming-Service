@@ -22,5 +22,7 @@ public class Main {
         mathias.addShowToHistory(familyGuy);
         mathias.displayHistory();
 */
+        User mathias = new User("Mathias", 31, "1234");
+        MainMenu m = new MainMenu(mathias);
     }
 }
