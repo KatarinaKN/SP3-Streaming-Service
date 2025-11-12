@@ -109,6 +109,38 @@ public class User {
         this.age = age;
     }
 
+    public ArrayList<Movie> getMoviesToWatch() {
+        return moviesToWatch;
+    }
+
+    public void setMoviesToWatch(ArrayList<Movie> moviesToWatch) {
+        this.moviesToWatch = moviesToWatch;
+    }
+
+    public ArrayList<Show> getShowsToWatch() {
+        return showsToWatch;
+    }
+
+    public void setShowsToWatch(ArrayList<Show> showsToWatch) {
+        this.showsToWatch = showsToWatch;
+    }
+
+    public ArrayList<Movie> getMovieHistory() {
+        return movieHistory;
+    }
+
+    public void setMovieHistory(ArrayList<Movie> movieHistory) {
+        this.movieHistory = movieHistory;
+    }
+
+    public ArrayList<Show> getShowHistory() {
+        return showHistory;
+    }
+
+    public void setShowHistory(ArrayList<Show> showHistory) {
+        this.showHistory = showHistory;
+    }
+
     public String toString(){
         return name +"; " + age + "; " + password;
     }

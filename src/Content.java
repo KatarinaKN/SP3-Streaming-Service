@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Content {
-    private ArrayList<String> category = new ArrayList<>();
-    private ArrayList<Movie> movieList = new ArrayList<>();
-    private ArrayList<Show> showList = new ArrayList<>();
+    private static ArrayList<String> category = new ArrayList<>();
+    private static ArrayList<Movie> movieList = new ArrayList<>();
+    private static ArrayList<Show> showList = new ArrayList<>();
     //private ArrayList<String> movieCategoryList = new ArrayList<>();
     //private ArrayList<String> showCategoryList = new ArrayList<>();
     FileIO io = new FileIO();
@@ -39,6 +39,18 @@ public class Content {
 
     public ArrayList<Show> createShowList() {
         showList = io.readShowFile();
+        return showList;
+    }
+
+    public static ArrayList<String> getCategory() {
+        return category;
+    }
+
+    public static ArrayList<Movie> getMovieList() {
+        return movieList;
+    }
+
+    public static ArrayList<Show> getShowList() {
         return showList;
     }
 }
