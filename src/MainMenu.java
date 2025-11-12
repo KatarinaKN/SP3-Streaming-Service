@@ -17,7 +17,7 @@ public class MainMenu {
     }
 
     public void displayMenu(){
-        ui.displayMessage("Hello " + user.getName() + " you have the following options: \n 1. Display Movies \n 2. Display Shows \n + 3. Search Category \n 4. To-Watch Movie List \n 5. to-Watch Show List");
+        ui.displayMessage("Hello " + user.getName() + " you have the following options: \n \t 1. Display Movies \n \t 2. Display Shows \n \t + 3. Search Category \n \t 4. To-Watch Movie List \n \t 5. to-Watch Show List");
         int choice = ui.promptNumeric("Select the number of what you wish to do:");
         switch(choice){
             case 1:
