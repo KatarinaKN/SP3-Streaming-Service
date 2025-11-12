@@ -21,10 +21,10 @@ public class MainMenu {
                 searchCategory();
                 break;
             case 4:
-                searchMoviesToWatch(this.user);
+                searchMoviesToWatch(user);
                 break;
             case 5:
-                searchShowsToWatch(this.user);
+                searchShowsToWatch(user);
                 break;
             default:
                 ui.displayMessage("Error with selected number.");
