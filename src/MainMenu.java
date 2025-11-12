@@ -3,12 +3,13 @@ import java.util.Scanner;
 
 public class MainMenu {
     TextUI ui = new TextUI();
-    ArrayList<String> list = Content.getCategory();
-    ArrayList<Movie> movieList = Content.getMovieList();
-    ArrayList<Show> showList = Content.getShowList();
+    Content content = new Content();
+    ArrayList<String> list = content.getCategory();
+    ArrayList<Movie> movieList = content.getMovieList();
+    ArrayList<Show> showList = content.getShowList();
 
     public void displayMenu(User user){
-        ui.displayMessage("Hello " + user.getName() + " you have the following options: \n \t 1. Display Movies \n \t 2. Display Shows \n \t + 3. Search Category \n \t 4. To-Watch Movie List \n \t 5. to-Watch Show List");
+        ui.displayMessage("Hello " + user.getName() + " you have the following options: \n \t 1. Display Movies \n \t 2. Display Shows \n \t 3. Search Category \n \t 4. To-Watch Movie List \n \t 5. to-Watch Show List");
         int choice = ui.promptNumeric("Select the number of what you wish to do:");
         switch(choice){
             case 1:

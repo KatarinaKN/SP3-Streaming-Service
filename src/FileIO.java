@@ -17,9 +17,9 @@ public class FileIO {
                 String line = scanner.nextLine();
                 String[] elements = line.split(";");
                 String name = elements[0].trim();
-                int year = Integer.parseInt(elements[1]);
+                int year = Integer.parseInt(elements[1].trim());
                 String[] category = elements[2].split(",");
-                double rating = Double.parseDouble(elements[3]);
+                double rating = Double.parseDouble(elements[3].trim());
                 Movie m = new Movie(name,year, category, rating);
                 movies.add(m);
             }
@@ -37,9 +37,9 @@ public class FileIO {
                 String line = scanner.nextLine();
                 String[] elements = line.split(";");
                 String name = elements[0].trim();
-                int year = Integer.parseInt(elements[1]);
+                int year = Integer.parseInt(elements[1].trim());
                 String[] category = elements[2].split(",");
-                double rating = Double.parseDouble(elements[3]);
+                double rating = Double.parseDouble(elements[3].trim());
                 int seasons = Integer.parseInt(elements[4]);
                 int episodes = Integer.parseInt(elements[5]);
 
@@ -66,7 +66,7 @@ public class FileIO {
     public void saveUserData(ArrayList<User> list, String pathUser) { //HER: indsæt header hvis det er i user.csv
         try (FileWriter writer = new FileWriter(pathUser, true)) {
             for (User u : list) {
-                writer.write(u.toString() + "\n");
+                writer.write("\n" + u.toString());
             }
         } catch (IOException e) {
             System.out.println("Fejl: Brugerdata kunne ikke gemmes til: " + pathUser +  "("+e.getMessage()+")");
@@ -81,7 +81,7 @@ public class FileIO {
                 String line = scanner.nextLine();
                 String[] elements = line.split(";");
                 String name = elements[0].trim();
-                int age = Integer.parseInt(elements[1]);
+                int age = Integer.parseInt(elements[1].trim());
                 String password = elements[2].trim();
                 User u = new User(name, age, password);
                 user.add(u);

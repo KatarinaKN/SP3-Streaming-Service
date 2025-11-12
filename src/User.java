@@ -142,6 +142,6 @@ public class User {
     }
 
     public String toString(){
-        return name +"; " + age + "; " + password;
+        return name +";" + age + ";" + password;
     }
 }
