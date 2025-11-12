@@ -2,21 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
-    User user;
     TextUI ui = new TextUI();
-    ArrayList<String> list;
-    ArrayList<Movie> movieList;
-    ArrayList<Show> showList;
+    ArrayList<String> list = Content.getCategory();
+    ArrayList<Movie> movieList = Content.getMovieList();
+    ArrayList<Show> showList = Content.getShowList();
 
-    public MainMenu (User user){
-        this.user = user;
-        list = Content.getCategory();
-        movieList = Content.getMovieList();
-        showList = Content.getShowList();
-        displayMenu();
-    }
-
-    public void displayMenu(){
+    public void displayMenu(User user){
         ui.displayMessage("Hello " + user.getName() + " you have the following options: \n \t 1. Display Movies \n \t 2. Display Shows \n \t + 3. Search Category \n \t 4. To-Watch Movie List \n \t 5. to-Watch Show List");
         int choice = ui.promptNumeric("Select the number of what you wish to do:");
         switch(choice){
@@ -30,10 +21,10 @@ public class MainMenu {
                 searchCategory();
                 break;
             case 4:
-                searchMoviesToWatch(this.user);
+                searchMoviesToWatch(user);
                 break;
             case 5:
-                searchShowsToWatch(this.user);
+                searchShowsToWatch(user);
                 break;
             default:
                 ui.displayMessage("Error with selected number.");
