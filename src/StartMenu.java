@@ -48,6 +48,10 @@ public class StartMenu {
                 }
             }
         }
+        boolean wantToRetry = ui.promptYesOrNo("Name not found in our database, would you like to re-try? (Y/N)");
+        if (wantToRetry){
+            login();
+        }
     }
 
 
