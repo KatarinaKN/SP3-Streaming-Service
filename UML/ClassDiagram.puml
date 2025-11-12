@@ -7,6 +7,7 @@ class StartMenu {
     + login()
     + registerUser()
     + displayUsers()
+    + endSession()
 }
 class MainMenu {
     + displayMenu()
@@ -16,7 +17,7 @@ class MainMenu {
     + searchMoviesToWatch()
     + searchShowsToWatch()
     + play()
-    + endSession()
+
 }
 class User {
     - String name
