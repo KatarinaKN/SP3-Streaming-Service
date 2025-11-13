@@ -29,12 +29,14 @@ public class StartMenu {
     public void login() {
         String inputName = this.ui.promptText("Enter your name: ");
         ArrayList<User> user = this.io.readUser();
+        boolean foundUser = false;
 
         for (int i = 0; i < user.size(); i++) {
             int counter = 0;
             if (user.get(i).getName().equalsIgnoreCase(inputName)) {
                 String inputPassword = this.ui.promptText("Hello " + inputName + ". Enter your password: ");
                 if (user.get(i).getPassword().equals(inputPassword)) {
+                    foundUser = true;
                     menu.displayMenu(user.get(i));
                 } else {
                     while(counter<3) {
@@ -48,9 +50,11 @@ public class StartMenu {
                 }
             }
         }
-        boolean wantToRetry = ui.promptYesOrNo("Name not found in our database, would you like to re-try? (Y/N)");
-        if (wantToRetry){
-            login();
+        if (!foundUser) {
+            boolean wantToRetry = ui.promptYesOrNo("Name not found in our database, would you like to re-try? (Y/N)");
+            if (wantToRetry) {
+                login();
+            }
         }
     }
 
